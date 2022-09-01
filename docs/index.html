@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://unpkg.com/jquery.json-viewer/json-viewer/jquery.json-viewer.css" />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      #sql {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100vw;
+        max-height: 90vh;
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <textarea id="sql" rows="20" cols="100">
+CREATE TABLE `article` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `space_id` int NOT NULL,
+  `node_id` int NOT NULL COMMENT '节点id',
+  `type` int NOT NULL COMMENT '文章类型: 1.富文本 2.markdown 3.附件',
+  `title` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '标题',
+  `body` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '内容',
+  `search` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '搜索',
+  `level` int unsigned NOT NULL DEFAULT '0' COMMENT '级别',
+  `ext` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '扩展字段',
+  `author` int NOT NULL COMMENT '作者uid',
+  `version` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '版本号',
+  `pos` int NOT NULL COMMENT '排序',
+  `ctime` timestamp NOT NULL DEFAULT '1970-01-01 00:00:01' COMMENT '创建时间',
+  `stime` timestamp NOT NULL COMMENT '保存时间',
+  `mtime` timestamp NOT NULL DEFAULT '1970-01-01 00:00:01' COMMENT '最后写入时间',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0' COMMENT '删除状态: 0未删除 1已删除',
+  PRIMARY KEY (`id`),
+  KEY `space_id_tree_id_node_id` (`space_id`,`node_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=230 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    </textarea>
+
+    <br>
+
+    <button id="extract">Extract</button>
+
+    <br>
+
+    <div id="json"></div>
+
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/jquery.json-viewer/json-viewer/jquery.json-viewer.js"></script>
+    <script src="https://unpkg.com/sql-create-table-statement-analyzer/lib/analyzer.iife.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#extract').on('click', function() {
+          const sql = $('#sql').val()
+          const { getTables } = analyzer
+          const data = getTables(sql)
+          $('#json').jsonViewer(data)
+        })
+      })
+    </script>
+  </body>
+</html>

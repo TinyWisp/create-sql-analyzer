@@ -1,0 +1,51 @@
+{
+  "name": "sql-create-table-statement-analyzer",
+  "version": "1.0.0",
+  "description": "extract column detail from sql create table statements",
+  "main": "lib/analyzer.umd.js",
+  "module": "lib/analyzer.es.js",
+  "unpkg": "lib/analyzer.iife.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup --compact --config rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TinyWisp/sql-create-table-statement-analyzer.git"
+  },
+  "keywords": [
+    "javascript",
+    "sql",
+    "create",
+    "table",
+    "statement",
+    "extract",
+    "columns"
+  ],
+  "author": "yinquan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TinyWisp/sql-create-statement-analyzer/issues"
+  },
+  "homepage": "https://github.com/TinyWisp/sql-create-statement-analyzer#readme",
+  "dependencies": {
+    "mysql-tokenizer": "^1.0.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.13",
+    "@babel/preset-env": "^7.18.10",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "babel": "^6.23.0",
+    "core-js": "^3.25.0",
+    "eslint": "^8.23.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-standard": "^15.0.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.1",
+    "rollup": "^2.78.1"
+  }
+}
