@@ -1,6 +1,6 @@
 {
   "name": "sql-create-table-statement-analyzer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "extract column detail from sql create table statements",
   "main": "lib/analyzer.umd.js",
   "module": "lib/analyzer.es.js",

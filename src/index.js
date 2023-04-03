@@ -263,12 +263,12 @@ function getColumnsFromCreateBody (body) {
         }
       }
 
-      // character
-      let character = ''
+      // character set
+      let characterSet = ''
       for (let i = 0; i < stm.length; i++) {
         const leftTokens = stm.slice(i, stm.length)
         if (match(leftTokens, ['CHARACTER', ' ', 'SET', ' ']) && leftTokens.length >= 5) {
-          character = leftTokens[4]
+          characterSet = leftTokens[4]
           break
         }
       }
@@ -290,7 +290,7 @@ function getColumnsFromCreateBody (body) {
         comment: columnComment,
         notNull,
         autoIncrement,
-        character,
+        characterSet,
         collate
       })
     } catch (e) {
